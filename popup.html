@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>Local Go Links</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+        body {
+            padding: 1em;
+        }
+
+        form>* {
+            display: block;
+        }
+
+        form>label {
+            margin-bottom: 0.5em;
+        }
+
+        form>input {
+            margin-bottom: 1em;
+        }
+    </style>
+</head>
+
+<body>
+    <form action="popup.html" method="post">
+        <label for="destination">Destination URL</label>
+        <input type="text" id="destination" name="destination">
+
+        <label for="linkName">Link Name</label>
+        <input type="text" id="linkName" name="linkName">
+
+        <label for="description">Description</label>
+        <input type="text" id="description" name="description">
+
+        <input type="submit" value="Submit">
+    </form>
+    <script src="/popup.js"></script>
+</body>
+
+</html>
