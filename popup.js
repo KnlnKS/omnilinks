@@ -1,3 +1,8 @@
+// Fill destination field with current tab URL
+browser.tabs.query({ currentWindow: true, active: true }).then((tabs) => {
+  document.querySelector("#destination").value = tabs[0].url;
+}, console.error);
+
 document.querySelector("form").addEventListener("submit", function (e) {
   e.preventDefault();
 
