@@ -1,9 +1,11 @@
 document.querySelector("form").addEventListener("submit", function (e) {
   e.preventDefault();
-  const goLink = {
-    destination: document.querySelector("#destination").value,
-    linkName: document.querySelector("#linkName").value,
-    description: document.querySelector("#description").value,
-  };
-  console.log(goLink);
+
+  const destination = document.querySelector("#destination").value;
+  const linkName = document.querySelector("#linkName").value;
+  const description = document.querySelector("#description").value;
+
+  browser.storage.local.set({
+    [linkName]: { destination, linkName, description },
+  });
 });
