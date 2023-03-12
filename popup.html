@@ -22,6 +22,10 @@
         form>input {
             margin-bottom: 1em;
         }
+
+        #formError {
+            color: red;
+        }
     </style>
 </head>
 
@@ -36,7 +40,8 @@
         <label for="description">Description</label>
         <input type="text" id="description" name="description">
 
-        <input type="submit" value="Submit">
+        <input type="submit" value="Save" id="submit">
+        <p id="formError"></p>
     </form>
     <script src="/popup.js"></script>
 </body>
