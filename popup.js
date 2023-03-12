@@ -38,10 +38,13 @@ document.querySelector("form").addEventListener("submit", function (e) {
   const linkName = document.querySelector("#linkName").value;
   const description = document.querySelector("#description").value;
 
+  // Form validation
   if (!isValidUrl(destination)) {
     onError("Please enter a valid URL", "#destination");
   } else if (!linkName) {
     onError("Please enter a link name", "#linkName");
+  } else if (linkName.includes(" ")) {
+    onError("Please enter a link name without spaces", "#linkName");
   } else {
     browser.storage.local.get(linkName).then((result) => {
       if (result[linkName]) {
@@ -50,7 +53,10 @@ document.querySelector("form").addEventListener("submit", function (e) {
       }
       // Save link to storage
       browser.storage.local.set({
-        [linkName]: { destination, linkName, description },
+        [linkName]: {
+          content: destination,
+          description: description ?? linkName,
+        },
       });
     });
   }
