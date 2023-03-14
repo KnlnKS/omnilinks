@@ -6,7 +6,7 @@ browser.omnibox.setDefaultSuggestion({
 // Update the suggestions whenever the input is changed.
 browser.omnibox.onInputChanged.addListener((text, addSuggestions) => {
   linkQuery = text.trim();
-  browser.storage.local.get(linkQuery).then((resp) => {
+  browser.storage.local.get().then((resp) => {
     if (Object.keys(resp).length === 0) {
       addSuggestions([
         {
@@ -16,7 +16,16 @@ browser.omnibox.onInputChanged.addListener((text, addSuggestions) => {
       ]);
       return;
     }
-    addSuggestions(Object.values(resp));
+    const fuse = new Fuse(Object.keys(resp), {});
+    const results = fuse.search(linkQuery);
+    const suggestions = results.map((result) => ({
+      content: resp[result.item].content,
+      description:
+        resp[result.item].description?.length > 0
+          ? resp[result.item].description
+          : result.item,
+    }));
+    addSuggestions(suggestions);
   });
 });
 
