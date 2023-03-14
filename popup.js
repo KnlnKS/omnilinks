@@ -17,7 +17,7 @@ const toggleDisabled = () => {
   }
 };
 
-const onError = (message, id) => {
+const onMessage = (message, id) => {
   document.querySelector(id + "-message").innerHTML = message;
   document.querySelector(id).focus();
 };
@@ -34,6 +34,7 @@ document.querySelector("form").addEventListener("submit", function (e) {
   document.querySelector("#destination-message").innerHTML = "";
   document.querySelector("#linkName-message").innerHTML = "";
   document.querySelector("#description-message").innerHTML = "";
+  document.querySelector("#submit-message").innerHTML = "";
 
   // Get form values
   const destination = document.querySelector("#destination").value;
@@ -42,15 +43,16 @@ document.querySelector("form").addEventListener("submit", function (e) {
 
   // Form validation
   if (!isValidUrl(destination)) {
-    onError("Please enter a valid URL", "#destination");
+    onMessage("Please enter a valid URL", "#destination");
+    return;
   } else if (!linkName) {
-    onError("Please enter a link name", "#linkName");
+    onMessage("Please enter a link name", "#linkName");
   } else if (linkName.includes(" ")) {
-    onError("Please enter a link name without spaces", "#linkName");
+    onMessage("Please enter a link name without spaces", "#linkName");
   } else {
     browser.storage.local.get(linkName).then((result) => {
       if (result[linkName]) {
-        onError("This link name already exists", "#linkName");
+        onMessage("This link name already exists", "#linkName");
         return;
       }
       // Save link to storage
@@ -60,6 +62,7 @@ document.querySelector("form").addEventListener("submit", function (e) {
           description: description ?? linkName,
         },
       });
+      onMessage("Link saved", "#submit");
     });
   }
   toggleDisabled();
