@@ -18,7 +18,7 @@ const toggleDisabled = () => {
 };
 
 const onError = (message, id) => {
-  document.querySelector("#formError").innerHTML = message;
+  document.querySelector(id + "-message").innerHTML = message;
   document.querySelector(id).focus();
 };
 
@@ -31,7 +31,9 @@ browser.tabs.query({ currentWindow: true, active: true }).then((tabs) => {
 document.querySelector("form").addEventListener("submit", function (e) {
   e.preventDefault();
   toggleDisabled();
-  document.querySelector("#formError").innerHTML = "";
+  document.querySelector("#destination-message").innerHTML = "";
+  document.querySelector("#linkName-message").innerHTML = "";
+  document.querySelector("#description-message").innerHTML = "";
 
   // Get form values
   const destination = document.querySelector("#destination").value;
