@@ -10,37 +10,28 @@
         body {
             padding: 1em;
         }
-
-        form>* {
-            display: block;
-        }
-
-        form>label {
-            margin-bottom: 0.5em;
-        }
-
-        form>input {
-            margin-bottom: 1em;
-        }
-
-        #formError {
-            color: red;
-        }
     </style>
+    <link rel="stylesheet" href="pure-min.css">
+    </link>
 </head>
 
 <body>
-    <form action="popup.html" method="post">
+    <form class="pure-form pure-form-stacked" action="popup.html" method="post">
         <label for="destination">Destination URL</label>
-        <input type="text" id="destination" name="destination">
+        <input type="text" id="destination" name="destination" />
+        <span class="pure-form-message">This is a required field.</span>
 
         <label for="linkName">Link Name</label>
-        <input type="text" id="linkName" name="linkName">
+        <input type="text" id="linkName" name="linkName" />
+        <span class="pure-form-message">This is a required field.</span>
 
         <label for="description">Description</label>
-        <input type="text" id="description" name="description">
+        <input type="text" id="description" name="description" />
+        <span class="pure-form-message">This is a required field.</span>
 
-        <input type="submit" value="Save" id="submit">
+        <button class="pure-button pure-button-primary" type="submit" id="submit">
+            Save
+        </button>
         <p id="formError"></p>
     </form>
     <script src="/popup.js"></script>
