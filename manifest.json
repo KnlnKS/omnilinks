@@ -5,7 +5,7 @@
     "description": "Go Links with local storage",
     "background": {
         "scripts": [
-            "background .js"
+            "background.js"
         ],
         "persistent": true
     },
