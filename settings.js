@@ -1,6 +1,6 @@
-const linkList = document.querySelector("#link-list");
-
 browser.storage.local.get().then((resp) => {
+  const linkList = document.querySelector("#link-list");
+
   // If no links found, display message
   if (Object.keys(resp).length === 0) {
     linkList.innerHTML = "No links found";
