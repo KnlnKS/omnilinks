@@ -38,7 +38,7 @@ document.querySelector("form").addEventListener("submit", function (e) {
 
   // Get form values
   const destination = document.querySelector("#destination").value;
-  const linkName = document.querySelector("#linkName").value;
+  const linkName = document.querySelector("#linkName").value.toLowerCase();
   const description = document.querySelector("#description").value;
 
   // Form validation
