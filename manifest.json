@@ -1,8 +1,8 @@
 {
     "manifest_version": 2,
-    "name": "Local Go Links",
+    "name": "Omnilinks",
     "version": "1.0",
-    "description": "Go Links with local storage",
+    "description": "Go Links using local storage",
     "background": {
         "scripts": [
             "background.js",
@@ -19,7 +19,7 @@
         "tabs"
     ],
     "omnibox": {
-        "keyword": "to/"
+        "keyword": "go/"
     },
     "icons": {
         "16": "icons/favicon_16.png",
