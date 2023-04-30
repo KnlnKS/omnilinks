@@ -1,3 +1,12 @@
+// Helper function to check if a string is a valid URL
+function checkValidURL(url) {
+  try {
+    return Boolean(new URL(url));
+  } catch (e) {
+    return false;
+  }
+}
+
 // Provide help text to the user.
 browser.omnibox.setDefaultSuggestion({
   description: "Search golinks",
@@ -6,6 +15,7 @@ browser.omnibox.setDefaultSuggestion({
 // Update the suggestions whenever the input is changed.
 browser.omnibox.onInputChanged.addListener((text, addSuggestions) => {
   linkQuery = text.trim();
+
   browser.storage.local.get().then((resp) => {
     if (Object.keys(resp).length === 0) {
       addSuggestions([
@@ -32,15 +42,30 @@ browser.omnibox.onInputChanged.addListener((text, addSuggestions) => {
 // Navigate to the selected result
 browser.omnibox.onInputEntered.addListener((text) => {
   linkQuery = text.trim();
+
+  // check if url
+  const isUrl = checkValidURL(linkQuery);
+
+  // if url, navigate to url
+  if (isUrl) {
+    browser.tabs.update({
+      url: linkQuery,
+    });
+    return;
+  }
+
+  // if not url, search for golink
   browser.storage.local.get(linkQuery).then((resp) => {
     if (Object.keys(resp).length === 0) {
+      // If not found, search google
       browser.tabs.update({
         url: "https://www.google.com/search?q=" + text,
       });
-      return;
+    } else {
+      // If found, navigate to golink
+      browser.tabs.update({
+        url: resp[linkQuery].content,
+      });
     }
-    browser.tabs.update({
-      url: resp[linkQuery].content,
-    });
   });
 });
