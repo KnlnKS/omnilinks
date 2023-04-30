@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <title>Local Go Links</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <link rel="stylesheet" href="pure-min.css" />
+  <style>
+    body {
+      padding: 1em;
+    }
+
+    table {
+      width: 300px;
+    }
+
+    #heading {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    #settings {
+      cursor: pointer;
+    }
+
+    .delete {
+      color: white;
+      text-shadow: 0 1px 1px rgba(0, 0, 0, 0.2);
+      background: rgb(202, 60, 60);
+    }
+  </style>
+</head>
+
+<body>
+  <div id="heading">
+    <h2>Settings</h2>
+  </div>
+
+
+  <table id="link-list" class="pure-table"></table>
+
+  <script src="/utils.js"></script>
+  <script src="/settings.js"></script>
+</body>
+
+</html>
