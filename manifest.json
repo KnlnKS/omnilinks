@@ -6,7 +6,8 @@
     "background": {
         "scripts": [
             "background.js",
-            "fuse.min.js"
+            "fuse.min.js",
+            "utils.js"
         ],
         "persistent": true
     },

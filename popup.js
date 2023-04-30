@@ -1,12 +1,3 @@
-// Helper functions
-const isValidUrl = (urlString) => {
-  try {
-    return Boolean(new URL(urlString));
-  } catch (e) {
-    return false;
-  }
-};
-
 const toggleDisabled = () => {
   document.querySelector("#submit").disabled =
     !document.querySelector("#submit").disabled;
@@ -42,7 +33,7 @@ document.querySelector("form").addEventListener("submit", function (e) {
   const description = document.querySelector("#description").value;
 
   // Form validation
-  if (!isValidUrl(destination)) {
+  if (!checkValidURL(destination)) {
     onMessage("Please enter a valid URL", "#destination");
     return;
   } else if (!linkName) {

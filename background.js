@@ -1,12 +1,3 @@
-// Helper function to check if a string is a valid URL
-function checkValidURL(url) {
-  try {
-    return Boolean(new URL(url));
-  } catch (e) {
-    return false;
-  }
-}
-
 // Provide help text to the user.
 browser.omnibox.setDefaultSuggestion({
   description: "Search golinks",
